@@ -1,0 +1,40 @@
+{
+  "name": "stencil-app-test",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Stencil App Starter",
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate"
+  },
+  "devDependencies": {
+    "@stencil-community/router": "^1.0.2",
+    "@stencil/core": "2.13.0",
+    "@types/jest": "^27.0.3",
+    "jest": "^27.4.5",
+    "jest-cli": "^27.4.5",
+    "@types/geojson": "^7946.0.8",
+    "puppeteer": "^10.0.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@arcgis/core": "~4.23.0",
+    "@esri/arcgis-rest-auth": "^3.5.0",
+    "@esri/arcgis-rest-feature-layer": "^3.5.0",
+    "@esri/arcgis-rest-portal": "^3.5.0",
+    "@esri/arcgis-rest-request": "^3.5.0",
+    "@esri/hub-ckeditor5-custom-build": "^0.0.4",
+    "@esri/hub-components": "file:.yalc/@esri/hub-components",
+    "@esri/arcgis-html-sanitizer": "^2.9.0",
+    "@esri/calcite-components": "1.0.3",
+    "@esri/calcite-ui-icons": "^3.18.3",
+     "@esri/hub-common": "^12.4.0",
+    "@esri/hub-discussions": "^14.19.0",
+    "@esri/hub-downloads": "^11.0.0",
+    "@esri/hub-events": "^11.0.0",
+    "@esri/hub-teams": "^11.0.0"
+  }
+}

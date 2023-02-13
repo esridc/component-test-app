@@ -1,0 +1,123 @@
+{
+  "name": "@esri/hub-components",
+  "version": "5.0.0-beta.194",
+  "description": "ArcGIS Hub web components",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "es2015": "dist/esm/index.js",
+  "es2017": "dist/esm/index.js",
+  "jsnext:main": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/hub-components/hub-components.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "analyze": "ANALYZE_BUNDLES=1 stencil build",
+    "build": "stencil build",
+    "build.watch": "stencil build --watch",
+    "start": "stencil build --dev --watch --serve",
+    "lint:test": "npm run lint && stencil test --spec --e2e",
+    "test:coverage": "stencil test --spec --coverage",
+    "test": "stencil test --spec --e2e",
+    "test:spec": "stencil test --spec",
+    "test:e2e": "stencil test --e2e",
+    "test.watch": "stencil test --spec --e2e --watch",
+    "test:watch:spec": "stencil test --spec --watch",
+    "test:watch:e2e": "stencil test --e2e --watch",
+    "test:ci:spec": "stencil test --spec",
+    "test:ci:e2e": "stencil test --e2e --max-workers=2",
+    "test:ci:e2e:qaext": "ENV=qaext npm run test:ci:e2e",
+    "test:ci:e2e:devext": "ENV=devext npm run test:ci:e2e",
+    "test:ci:e2e:prod": "ENV=prod npm run test:ci:e2e",
+    "generate": "./scripts/hub-generate.sh",
+    "generate-story": "plop story",
+    "generate-harness": "plop harness",
+    "lint": "eslint ./src --ext .ts,.tsx",
+    "lint:ci": "eslint ./src --ext .ts,.tsx --quiet",
+    "lint:fix": "eslint ./src --ext .ts,.tsx --fix",
+    "lint:s": "standardx --parser @typescript-eslint/parser --plugin @typescript-eslint/eslint-plugin src/**/*.ts*",
+    "lint-fix:s": "standardx --fix --parser @typescript-eslint/parser --plugin @typescript-eslint/eslint-plugin src/**/*.ts*",
+    "publish-npm": "npm publish --access public",
+    "prepublishOnly": "npm run clean && npm run build",
+    "clean": "rimraf dist loader www static-deploy storybook-static",
+    "release:beta": "npm version prerelease --preid beta -f && git push origin master --tags && ./node_modules/.bin/gh-release --prerelease",
+    "start-storybook": "start-storybook -p 6006 --no-manager-cache",
+    "start-storybook-old": "start-storybook -p 6006 -s ./dist,./public --no-manager-cache",
+    "storybook.run": "run-s build start-storybook",
+    "storybook": "npm-run-all build --parallel build.watch start-storybook",
+    "build-storybook": "build-storybook",
+    "build-storybook-old": "build-storybook -o static-deploy/storybook",
+    "build-harness": "stencil build www",
+    "copy-harness": "cpy '.' '../static-deploy/harnesses' --cwd='./www'",
+    "copy-storybook": "cpy '.' '../static-deploy/storybook' --cwd='./storybook-static'",
+    "ghpages:files": "cpy '.' '../../static-deploy' --cwd='./public/gh-pages'",
+    "ghpages:harness": "npm-run-all build-harness copy-harness",
+    "ghpages:storybook": "npm-run-all build-storybook copy-storybook",
+    "build:ghpages": "npm-run-all clean build ghpages:harness ghpages:storybook ghpages:files",
+    "deploy:ghpages": "node ./scripts/deploy-gh-pages.js",
+    "deploy-storybook": "storybook-to-ghpages"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint"
+    ],
+    "*.tsx": [
+      "eslint"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esri/hub-components.git"
+  },
+  "contributors": [
+    {
+      "name": "Andrew Turner",
+      "email": "aturner@esri.com"
+    },
+    {
+      "name": "Rich Gwozdz",
+      "email": "rgwozdz@esri.com"
+    }
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@esri/arcgis-html-sanitizer": "^2.9.0",
+    "@esri/calcite-components": "1.0.0-beta.98",
+    "@esri/calcite-ui-icons": "^3.18.3",
+    "@esri/telemetry-dictionary-hub": "^2.41.0",
+    "@esri/telemetry-reporting-client": "^3.2.1",
+    "@formatjs/intl": "^1.15.0",
+    "@stencil/core": "2.17.0",
+    "ajv": "^6.12.6",
+    "date-fns": "^2.15.0",
+    "esri-loader": "^3.7.0",
+    "eventemitter3": "^4.0.4",
+    "json-pointer": "^0.6.2",
+    "json-schema-typed": "^7.0.3",
+    "linkify-html": "^3.0.5",
+    "linkifyjs": "^3.0.5"
+  },
+  "peerDependencies": {
+    "@arcgis/core": "~4.23.0",
+    "@esri/arcgis-rest-auth": "^2.21.0 || 3",
+    "@esri/arcgis-rest-feature-layer": "^2.21.0 || 3",
+    "@esri/arcgis-rest-portal": "^2.21.0 || 3",
+    "@esri/arcgis-rest-request": "^2.21.0 || 3",
+    "@esri/hub-common": "^10.1.0 || 11",
+    "@esri/hub-discussions": "^12.0.0 || 13 || 14",
+    "@esri/hub-downloads": "^10.0.0 || 11",
+    "@esri/hub-events": "^10.0.0 || 11",
+    "@esri/hub-teams": "^10.0.0 || 11"
+  },
+  "overrides": {
+    "@stencil/core": "2.17.0"
+  },
+  "volta": {
+    "node": "14.17.0",
+    "npm": "8.13.2"
+  },
+  "yalcSig": "23c453345fe69bf1298f1330c0dc2cf8"
+}
